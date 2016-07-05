@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>TIJ4</groupId>
+  <artifactId>TIJ4</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>TIJ4</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>    
+    <dependency>
+	<groupId>com.io7m.xom</groupId>
+	<artifactId>xom</artifactId>
+	<version>1.2.10</version>
+</dependency>
+    <dependency>
+	<groupId>org.javassist</groupId>
+	<artifactId>javassist</artifactId>
+	<version>3.20.0-GA</version>
+</dependency>    
+  </dependencies>
+  <description>Thinking In Java 4 Source Code. Updated to JDK8, and shifted to Maven.
+
+Please note that as mentioned on the author's website, you need to add the following 4 libraries to successfully build the whole code:
+1. XOM
+2. Javaassist
+3. swt.jar
+4. javaws.jar
+
+XOM and Javaassist have been placed as a dependency in  pom.xml. 
+
+As for swt.jar and javaws.jar, javaws.jar can found in your JRE installation at inside the 'lib' folder. Example: C:\Program Files\Java\jre1.8.0_77\lib
+
+swt.jar can be found at: http://download.eclipse.org/eclipse/downloads/
+Just choose the latest version, scroll down to &quot;SWT Binary and Source&quot;, and download the corresponding binary for your platform.
+
+After you download these two libraries, place them inside the &quot;jre/lib/ext&quot; of the Java Runtime that is set up when you install the JDK.
+
+(As explained by the author Bruce Eckel on the source code page)
+</description>
+</project>
