@@ -20,8 +20,9 @@ After you download these two libraries, place them inside the "jre/lib/ext" of t
 
 ### Note: Open Issue
 
-The source code for the package "annotations" is not completely correct. Bruce's code used the legacy `apt` tool, which has been deprecated. I tried to replace its usage using the newer javax.annotation.processing and javax.lang.model as mentioned at http://docs.oracle.com/javase/7/docs/technotes/guides/apt/.
-However, I couldn't figure out all the changes, and therefore, the Java files inside this package throws Compilation errors. 
+The source code for the package "annotations" is not completely correct. Bruce's code used the legacy `apt` tool, which has been deprecated. 
+
+http://docs.oracle.com/javase/7/docs/technotes/guides/apt/.
 
 It would be great if someone could help with this.
 
