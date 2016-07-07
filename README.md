@@ -7,7 +7,7 @@ Bruce's code uses the legacy `apt` tool, which has been deprecated since Java 1.
 
 http://docs.oracle.com/javase/7/docs/technotes/guides/apt/.
 
-In order to remove the compilation errors you would see in Eclipse, please add the "External Jar" - tools.jar provided in the "lib" folder to your Eclipse project. 
+In order to remove the compilation errors you would see in Eclipse, please add the "External Jar" - tools.jar provided in the "lib" folder to your Eclipse project. (Taken from OpenJDK 7u51)
 
 ### Installation
 Simply download the source code (clone the project) and import this project as a new Maven project into your IDE.
