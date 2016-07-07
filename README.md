@@ -3,9 +3,7 @@
 
 ### Note: For the 'annotations' package
 
-Bruce's code uses the legacy `apt` tool, which has been deprecated since Java 1.7, and removed in Java 1.8. 
-
-http://docs.oracle.com/javase/7/docs/technotes/guides/apt/.
+Bruce's code uses the legacy `apt` tool, which has been [deprecated in Java 7](http://docs.oracle.com/javase/7/docs/technotes/guides/apt/), and [removed in Java 8](http://openjdk.java.net/jeps/117). 
 
 In order to remove the compilation errors you would see in Eclipse, please add the "External Jar" - tools.jar provided in the "lib" folder to your Eclipse project. (Taken from OpenJDK 7u51)
 
