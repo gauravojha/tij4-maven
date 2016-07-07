@@ -1,15 +1,15 @@
 //: annotations/InterfaceExtractorProcessorFactory.java
 // APT-based annotation processing.
 package annotations;
-import javax.annotation.processing.*;
-import javax.lang.model.element.TypeElement;
+import com.sun.mirror.apt.*;
+import com.sun.mirror.declaration.*;
 import java.util.*;
 
 public class InterfaceExtractorProcessorFactory
-  implements Processor {
-  public Processor getProcessorFor(
-    Set<TypeElement> atds,
-    ProcessingEnvironment env) {
+  implements AnnotationProcessorFactory {
+  public AnnotationProcessor getProcessorFor(
+    Set<AnnotationTypeDeclaration> atds,
+    AnnotationProcessorEnvironment env) {
     return new InterfaceExtractorProcessor(env);
   }
   public Collection<String> supportedAnnotationTypes() {

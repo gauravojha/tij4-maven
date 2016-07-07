@@ -4,27 +4,26 @@
 // annotations.InterfaceExtractorProcessorFactory
 // Multiplier.java -s ../annotations}
 package annotations;
-import javax.annotation.processing.*;
-import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.TypeElement;
+import com.sun.mirror.apt.*;
+import com.sun.mirror.declaration.*;
 import java.io.*;
 import java.util.*;
 
 public class InterfaceExtractorProcessor
-  implements Processor {
-  private final ProcessingEnvironment env;
-  private ArrayList<ExecutableElement> interfaceMethods =
-    new ArrayList<ExecutableElement>();
+  implements AnnotationProcessor {
+  private final AnnotationProcessorEnvironment env;
+  private ArrayList<MethodDeclaration> interfaceMethods =
+    new ArrayList<MethodDeclaration>();
   public InterfaceExtractorProcessor(
-    ProcessingEnvironment env) { this.env = env; }
+    AnnotationProcessorEnvironment env) { this.env = env; }
   public void process() {
-    for(TypeElement typeDecl :
+    for(TypeDeclaration typeDecl :
       env.getSpecifiedTypeDeclarations()) {
       ExtractInterface annot =
         typeDecl.getAnnotation(ExtractInterface.class);
       if(annot == null)
         break;
-      for(ExecutableElement m : typeDecl.getMethods())
+      for(MethodDeclaration m : typeDecl.getMethods())
         if(m.getModifiers().contains(Modifier.PUBLIC) &&
            !(m.getModifiers().contains(Modifier.STATIC)))
           interfaceMethods.add(m);
@@ -36,7 +35,7 @@ public class InterfaceExtractorProcessor
             typeDecl.getPackage().getQualifiedName() +";");
           writer.println("public interface " +
             annot.value() + " {");
-          for(ExecutableElement m : interfaceMethods) {
+          for(MethodDeclaration m : interfaceMethods) {
             writer.print("  public ");
             writer.print(m.getReturnType() + " ");
             writer.print(m.getSimpleName() + " (");

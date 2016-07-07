@@ -4,18 +4,17 @@
 // annotations.database.TableCreationProcessorFactory
 // database/Member.java -s database}
 package annotations.database;
-import javax.annotation.processing.*;
-import javax.lang.model.element.TypeElement;
-import javax.lang.model.util.SimpleElementVisitor6;
-import javax.lang.model.element.VariableElement;
+import com.sun.mirror.apt.*;
+import com.sun.mirror.declaration.*;
+import com.sun.mirror.util.*;
 import java.util.*;
-
+import static com.sun.mirror.util.DeclarationVisitors.*;
 
 public class TableCreationProcessorFactory
-  implements Processor {
-  public Processor getProcessorFor(
-    Set<TypeElement> atds,
-    ProcessingEnvironment env) {
+  implements AnnotationProcessorFactory {
+  public AnnotationProcessor getProcessorFor(
+    Set<AnnotationTypeDeclaration> atds,
+    AnnotationProcessorEnvironment env) {
     return new TableCreationProcessor(env);
   }
   public Collection<String> supportedAnnotationTypes() {
@@ -29,15 +28,15 @@ public class TableCreationProcessorFactory
     return Collections.emptySet();
   }
   private static class TableCreationProcessor
-    implements Processor {
-    private final ProcessingEnvironment env;
+    implements AnnotationProcessor {
+    private final AnnotationProcessorEnvironment env;
     private String sql = "";
     public TableCreationProcessor(
-      ProcessingEnvironment env) {
+      AnnotationProcessorEnvironment env) {
       this.env = env;
     }
     public void process() {
-      for(TypeElement typeDecl :
+      for(TypeDeclaration typeDecl :
         env.getSpecifiedTypeDeclarations()) {
         typeDecl.accept(getDeclarationScanner(
           new TableCreationVisitor(), NO_OP));
@@ -47,9 +46,9 @@ public class TableCreationProcessorFactory
       }
     }
     private class TableCreationVisitor
-      extends SimpleElementVisitor6 {
+      extends SimpleDeclarationVisitor {
       public void visitClassDeclaration(
-        TypeElement d) {
+        ClassDeclaration d) {
         DBTable dbTable = d.getAnnotation(DBTable.class);
         if(dbTable != null) {
           sql += "CREATE TABLE ";
@@ -60,7 +59,7 @@ public class TableCreationProcessorFactory
         }
       }
       public void visitFieldDeclaration(
-        VariableElement d) {
+        FieldDeclaration d) {
         String columnName = "";
         if(d.getAnnotation(SQLInteger.class) != null) {
           SQLInteger sInt = d.getAnnotation(
