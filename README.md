@@ -1,6 +1,17 @@
 # Thinking In Java 4 Source Code. 
 ### Updated to JDK8, and shifted to Maven.
 
+### Note: For the 'annotations' package
+
+Bruce's code uses the legacy `apt` tool, which has been deprecated since Java 1.7, and removed in Java 1.8. 
+
+http://docs.oracle.com/javase/7/docs/technotes/guides/apt/.
+
+In order to remove the compilation errors you would see in Eclipse, please add the "External Jar" - tools.jar provided in the "lib" folder to your Eclipse project. 
+
+### Installation
+Simply download the source code (clone the project) and import this project as a new Maven project into your IDE.
+
 Please note that as mentioned on the author's website, you need to add the following 4 libraries to successfully build the whole code:
 1. XOM
 2. Javaassist
@@ -18,16 +29,7 @@ After you download these two libraries, place them inside the "jre/lib/ext" of t
 
 (As explained by the author Bruce Eckel on the source code page)
 
-### Note: Open Issue
-
-The source code for the package "annotations" is not completely correct. Bruce's code used the legacy `apt` tool, which has been deprecated. 
-
-http://docs.oracle.com/javase/7/docs/technotes/guides/apt/.
-
-It would be great if someone could help with this.
-
-### Installation
-Simply download the source code (clone the project) and import this project as a new Maven project into your IDE.
+**Also, do not forget to add the external 'tools.jar' to your Eclipse project** (Read the note above for annotations package)
 
 Tested on Eclipse.
 
